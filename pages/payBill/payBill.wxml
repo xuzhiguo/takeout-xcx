@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="main">
+      <view class="logo-box">
+        <image mode="widthFix" src="../../image/logo.png"></image>
+      </view>
+      <view class="pay-tips">向商家“ 多点点 ”支付</view>
+      <view class="pay-title">转账金额</view>
+      <view class="money-box">
+        <view class='symbol'>￥</view>
+        <input type="number" bindinput="isCanPay" placeholder="" />
+      </view>
+      <view class="pay-check" wx:for="{{payType}}" wx:key="{{index}}" bindtap='changePay' data-index="{{index}}">
+        <view class="check-left">
+          <icon class="iconfont {{item.icon}}"></icon>
+          {{item.text}}
+        </view>
+        <view class="check-right">
+          <icon class="iconfont {{index===payIndex?'icon-checked':'icon-uncheck'}}"></icon>
+        </view>
+      </view>
+      <view class="tips">* 请与服务员确定金额后再支付</view>
+      <view class="pay-box">
+        <button class="pay-btn" disabled="{{!canPay}}" hover-class="click-after" bindtap='pay'>支付</button>
+      </view>
+    </view>
+  </view>
+</view>

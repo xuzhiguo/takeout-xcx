@@ -1,0 +1,75 @@
+.page__bd {
+  position: relative;
+  background: #f5f5f5;
+  padding-top: 20rpx;
+  box-sizing: border-box;
+}
+
+.info-box {
+  padding-left: 30rpx;
+  background: #fff;
+}
+.info-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: solid 1px #ececec;
+}
+
+.info-label {
+  margin-right: 30rpx;
+  color: #333;
+  font-size: 34rpx;
+  flex-shrink: 0;
+}
+
+.info-item input {
+  font-size: 34rpx;
+}
+
+.address-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 34rpx;
+  color: #888888;
+  padding-right: 20rpx;
+}
+
+.address-detail {
+  width: 100%;
+}
+
+.address-box icon {
+  width: 40rpx;
+  flex-shrink: 0;
+}
+
+.btn-group {
+  display: flex;
+  padding: 20rpx;
+  background: #fff;
+}
+
+.btn-group button {
+  flex: 1;
+  margin: 0 10rpx;
+  font-size: 34rpx;
+  color: #fff;
+}
+
+.cancel {
+  background: #ff6666;
+}
+
+.save {
+  background: #fea512;
+}
+
+.click-after {
+  background-color: #f8b249 !important;
+}
+
+.click-after1 {
+  background-color: #ed8d8d !important;
+}

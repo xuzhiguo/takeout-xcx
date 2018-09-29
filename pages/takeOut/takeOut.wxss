@@ -1,0 +1,271 @@
+.weui-tab__content{
+    padding: 10rpx 0;
+}
+
+.weui-navbar__item.weui-bar__item_on {
+  color: #fd9800;
+}
+.weui-navbar__slider {
+  background-color: #fd9800;
+}
+
+/* 外卖 */
+.tips {
+  color: #ff6b6c;
+  font-size: 30rpx;
+  padding: 0rpx 20rpx 10rpx;
+  /* border-bottom: solid 1px #666; */
+}
+
+.weui-navbar {
+  background: #fff;
+}
+
+.menu-box {
+  border-top: solid 1px #ececec;
+  overflow-y: hidden;
+  height: calc(100% - 200rpx);
+}
+.weui-tab__content {
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: hidden;
+}
+
+.weui-flex {
+  height: 100%;
+}
+
+.weui-flex__item {
+  position: relative;
+  height: 100%;
+}
+
+.menu-list {
+  position: absolute;
+  text-align: center;
+  overflow-y: auto;
+  top: 0;
+  bottom: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.menu-item {
+  position: relative;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  padding: 20rpx;
+  color: #888888;
+  background-color: #f3f3f3;
+}
+.menu-item.active {
+  color: #fd9800;
+  background: #fff;
+}
+
+.menu-badge {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  background-color:#fd9800;
+}
+.weui-tab__panel {
+  height: 100%;
+}
+
+.menu-contant {
+  flex: 3;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+.contant-title {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  line-height: 50rpx;
+  background: #fafafa;
+  color: #888888;
+  font-size: 34rpx;
+  border-bottom: solid 1px #ececec;
+}
+
+.contant-title .iconfont {
+  font-size: 45rpx;
+}
+
+.contant-list {
+  position: relative;
+  height: 100%;
+  background-color: #ececec;
+}
+
+.contant-item {
+  display: flex;
+  background: #fff;
+  padding: 30rpx 20rpx;
+  margin-bottom: 1px;
+}
+
+.left-item {
+  width: 120rpx;
+
+}
+
+.item-logo {
+  display: block;
+   width: 120rpx;
+   height: 120rpx;
+}
+
+.right-item {
+  padding: 0 20rpx;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.item-title {
+  color: #333333;
+}
+
+.item-price {
+  color: #ff6b6c;
+  font-size: 36rpx;
+}
+
+.count-ctrl {
+  position: absolute;
+  right: 20rpx;
+  bottom: 0;
+  display: flex;
+}
+
+.count {
+  color: #333;
+}
+
+.count-icon {
+  color: #ff6b6c;
+  padding: 0 15rpx;
+  font-size: 40rpx;
+}
+
+.count-icon.disabled {
+  color: #888;
+}
+
+.car-box {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+}
+
+.car-logo {
+  height: 100rpx;
+  width: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  margin-top: -30rpx;
+  margin-left: 20rpx;
+  border-radius: 50%;
+  background-color: #fd9800;
+}
+
+.car-logo icon {
+  font-size: 50rpx;
+  color: #fff;
+  display: block;
+}
+
+.price {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+  color: #ff6b6c;
+}
+
+.pay {
+  flex: 1;
+  text-align: center;
+  line-height: 100rpx;
+   background: #fd9800; 
+  color: #fff;
+}
+
+.pay.disabled {
+  background: #888888;
+}
+
+/* 评价 */
+.score-box {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  color: #ff6b6c;
+  font-size: 30rpx;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
+
+.score-box view {
+  font-size: 60rpx;
+}
+
+.total-tips {
+  width: 100%;
+  text-align: center;
+  color: #888888;
+  font-size: 28rpx;
+  padding-bottom: 30rpx;
+  border-bottom: solid 1px #ececec;
+}
+
+.evaluate-item {
+  padding: 10rpx 20rpx;
+  border: solid 1px #ececec;
+}
+
+.user-name {
+  font-size: 34rpx;
+  color: #888888;
+}
+
+.pd-left {
+  padding-left: 20rpx;
+}
+.start-box {
+  margin: -10rpx 0 10rpx;
+}
+
+.user-start {
+  color: #ff9900;
+}
+
+.user-start.gray {
+  color: #888888;
+}
+
+.evaluate {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.time {
+  text-align: right;
+  font-size: 30rpx;
+  color: #b2b2b2;
+}
+
+.scroll-box {
+  overflow-y: auto;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}

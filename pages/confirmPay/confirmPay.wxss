@@ -1,0 +1,180 @@
+.page__bd {
+  position: relative;
+  background: #f5f5f5;
+}
+
+.address-box {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  background: #fff;
+  color: #333333;
+  font-size: 36rpx;
+  margin-bottom: 20rpx;
+}
+.address-box icon {
+  font-size: 36rpx;
+  padding-right: 16rpx;
+  color: #ff6b6c;
+}
+
+.order-box {
+  background: #fff;
+  margin-bottom: 110rpx;
+}
+
+.order-type-item {
+  padding: 0;
+}
+
+.oreder-type-title {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  color: #333333;
+  font-weight: 700;
+  font-size: 34rpx;
+}
+
+.oreder-type-title icon {
+  font-size: 40rpx;
+}
+
+.food-list {
+  display: flex;
+  padding: 20rpx 30rpx 10rpx;
+  background: #f9f9f9;
+  margin-bottom: 10rpx;
+}
+.food-list:last-of-type {
+  margin-bottom: 0;
+}
+
+.food-image {
+  width: 100rpx;
+}
+
+.food-image image {
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.food-info {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  color: #333333;
+}
+
+.info-left {
+  flex: 2;
+}
+
+.info-right {
+  flex: 1;
+  text-align: right;
+  font-size: 34rpx;
+}
+
+.price {
+  color: #333;
+}
+
+.count {
+  color: #888888;
+  font-size: 30rpx;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  height: 100rpx;
+  border-top: solid 1px #ececec;
+  box-shadow:10rpx 10rpx 10rpx 10rpx #ececec;
+}
+
+.total {
+  padding-left: 20rpx;
+  font-size: 50rpx;
+  color: #ff6b6c;
+  width: 100%;
+  font-weight: 700;
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200rpx;
+  height: 100%;
+  flex-shrink: 0;
+  background: #fea512;
+  font-size: 36rpx;
+  color: #fff;
+}
+
+.price-list {
+  padding: 30rpx 30rpx 10rpx;
+  border-bottom: solid #ececec 1px;
+}
+
+.price-item {
+  display: flex;
+  align-items: center;
+}
+
+.price-title {
+  flex: 1;
+  color: #666666;
+  font-size: 30rpx;
+}
+
+.price-detail {
+  flex: 1;
+  text-align: right;
+  color: #666666;
+  font-size: 30rpx;
+}
+
+.price-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10rpx 30rpx;
+  font-size: 34rpx;
+}
+
+.price-total {
+  color: #ff6b6c;
+  font-size: 38rpx;
+}
+
+.user-info {
+  display: flex;
+  padding-left: 20rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.user-left {
+  display: flex;
+  align-items: center;
+  padding-right: 30rpx;
+}
+
+.user-right {
+  padding: 10rpx 30rpx 10rpx 0;
+}
+
+.user-info-item {
+  font-size: 32rpx;
+  color: #333333;
+}
+

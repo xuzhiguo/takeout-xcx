@@ -1,0 +1,25 @@
+
+var dateFn = {
+  /**
+   * 格式化时间
+   */
+  dateFormat: function(dateStr) {
+    var l = dateStr.length;
+    switch(l) {
+      case 8:
+        var y = dateStr.slice(0,4);
+        var m = dateStr.slice(4,6);
+        var d = dateStr.slice(6,8);
+
+        return y + '-' + m + '-' + d;
+      break;
+      default:
+        console.error('dateFn.dateFormat 参数格式错误');
+        return '';
+    }
+  }
+}
+
+module.exports = {
+  dateFormat: dateFn.dateFormat
+};

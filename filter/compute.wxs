@@ -1,0 +1,19 @@
+
+var Compute = {
+  /**
+   * 计算平均值
+   * @sum 总数
+   * @count 数量
+   * @decimals 保留小数位
+   */
+  average: function (sum, count, decimals) {
+    decimals = decimals || 1;
+    var score = sum / count;
+    return score.toFixed(decimals);
+  }
+}
+
+
+module.exports = {
+  average: Compute.average
+}

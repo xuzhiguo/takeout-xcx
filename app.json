@@ -1,0 +1,19 @@
+{
+  "pages":[
+    "pages/confirmPay/confirmPay",
+    "pages/takeOut/takeOut",
+    "pages/payBill/payBill",
+    "pages/index/index",
+    "pages/chooseAddress/chooseAddress",
+    "pages/orderMenu/orderMenu",
+    "pages/msg/success",
+    "pages/logs/logs"
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fea611",
+    "navigationBarTitleText": "多点点",
+    "navigationBarTextStyle":"#fff"
+  }
+}

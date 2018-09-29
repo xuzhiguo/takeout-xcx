@@ -1,0 +1,58 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="address-box" bindtap='goChooseAddress' >
+      <icon class='iconfont icon-add'></icon>
+      选择收货地址 
+    </view>
+    <view class="user-info" hidden="{{!showAddress}}">
+      <view class="user-left">
+        <icon class="iconfont icon-local"></icon>
+      </view>
+      <view class='user-right'>
+        <view class="user-info-item">联系人：{{addressObj.name}}</view>
+        <view class="user-info-item">电话：{{addressObj.phone}}</view>
+        <view class="user-info-item">收货地址：{{addressObj.address}}</view>
+      </view>
+    </view>
+    <view class="order-box">
+      <view class="order-type-item" wx:for="{{1}}" wx:key="{{index}}">
+        <view class='oreder-type-title'>
+          <icon class="iconfont icon-dingdan"></icon>
+          烧腊套餐
+        </view>
+        <view class="food-list" wx:for="{{2}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{idx}}">
+          <view class="food-image">
+            <image src='../../image/shop3.jpg'></image>
+          </view>
+          <view class="food-info">
+            <view class="info-left">
+              红烧排骨饭
+            </view>
+            <view class="info-right">
+              <view class="price">￥18</view>
+              <view class="count">× 1</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="price-list">
+        <view class="price-item">
+          <view class="price-title">餐盒费</view>
+          <view class="price-detail">￥1</view>
+        </view>
+        <view class="price-item">
+          <view class="price-title">配送费</view>
+          <view class="price-detail">￥{{transCost}}</view>
+        </view>
+      </view>
+      <view class="price-box">
+        总计：
+        <view class="price-total">￥68</view>
+      </view>
+    </view>
+    <view class="bottom-bar">
+      <view class="total">￥68</view>
+      <view class="submit-btn">提交订单</view>
+    </view>
+  </view>
+</view>

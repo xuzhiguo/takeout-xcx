@@ -1,0 +1,98 @@
+<wxs module="Compute" src="../../filter/compute.wxs"></wxs>
+<wxs module="DateFn" src="../../filter/dateFn.wxs"></wxs>
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <!-- 外卖 -->
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                  <view class='menu-box'>
+                    <view class="weui-flex">
+                        <!-- 左侧列表 -->
+                        <view class="weui-flex__item">
+                          <scroll-view scroll-y class='menu-list'>
+                            <view class="menu-item {{menuIndex===index?'active':''}}" 
+                              wx:for="{{menuList}}" wx:key="{{index}}" bindtap='changeMenu' data-index="{{index}}" >
+                              <view class="weui-badge menu-badge" hidden="{{item.count==0}}">{{item.count}}</view>
+                              {{item.text}}
+                            </view>
+                          </scroll-view>
+                        </view>
+                        <!-- 右侧内容 -->
+                        <scroll-view scroll-y class="weui-flex__item menu-contant" scroll-into-view="{{toView}}">
+                          <view class='contant-title' id="contantTitle">
+                            <view class='iconfont icon-dingdan'></view> 
+                            {{menuList[menuIndex].text}}
+                          </view>
+                          <view class='contant-list'>
+                            <view class='contant-item' wx:for="{{menuList[menuIndex].foodList}}" wx:key="{{index}}">
+                              <view class='left-item'>
+                                 <image class="item-logo" src='../../image/shop1.jpg'></image> 
+                              </view>
+                              <view class='right-item'>
+                                <view class='item-title'>{{item.text}}</view>
+                                <view class='item-price'>￥{{item.price}}</view>
+                                <view class='count-ctrl'>
+                                  <view class="count-icon iconfont icon-del {{item.count>0?'':'disabled'}}" 
+                                    data-type="{{'del'}}" data-index="{{index}}" 
+                                    data-count="{{item.count}}" bindtap="countNum"
+                                    data-price="{{item.price}}"></view>
+                                  <view class='count'>{{item.count}}</view>
+                                  <view class="count-icon iconfont icon-add {{item.count>99?'':disabled}}" 
+                                    data-type="{{'add'}}" data-index="{{index}}" 
+                                    data-count="{{item.count}}" bindtap="countNum"
+                                    data-price="{{item.price}}"></view>
+                                </view>
+                              </view>
+                            </view>
+                          </view>
+                        </scroll-view>
+                    </view>
+                  </view>
+                  <!-- 购物车 -->
+                  <view class='car-box'>
+                    <view class='car-logo'>
+                      <icon class='iconfont icon-car'></icon>
+                    </view>
+                    <view class='price'>￥ {{total}}</view>
+                    <view class="pay {{total>0?'':'disabled'}}">选好了</view>
+                  </view>
+                </view>
+                <!-- 评价 -->
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                  <scroll-view scroll-y class='scroll-box' >
+                    <view class='total-score'>
+                      <view class='score-box'>
+                       <view>{{Compute.average(evaluate.totalPoints, evaluate.totalNum)}}</view>分 
+                      </view>
+                      <view class='total-tips'>共有{{evaluate.totalNum}}条评价</view>
+                    </view>
+                    <view class='evaluate-box'>
+                      <view class='evaluate-item' wx:for="{{evaluate.list}}" wx:key="index">
+                        <view class='user-name'>{{item.username}}</view>
+                        <view class='pd-left start-box'>
+                          <icon class="iconfont icon-five-star user-start {{idx>item.score-1?'gray':''}}"
+                            wx:for="{{5}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{idx}}">
+                          </icon>
+                        </view>
+                        <view class='evaluate pd-left'>
+                          {{item.text}}
+                        </view>
+                        <view class='time'>{{DateFn.dateFormat(item.time)}}</view>
+                      </view>
+                    </view>
+                  </scroll-view>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">选项三的内容</view>
+            </view>
+        </view>
+    </view>
+</view>

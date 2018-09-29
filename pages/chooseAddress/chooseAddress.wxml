@@ -1,0 +1,27 @@
+<view class="page">
+  <view class="page__bd">
+    <form bindsubmit="saveAddress">
+      <view class="info-box">
+        <view class='info-item'>
+          <view class='info-label'>联系人</view>
+          <input type="text" placeholder="姓名" name="name" value="{{name}}" ></input>
+        </view>
+        <view class='info-item'>
+          <view class='info-label'>电话</view>
+          <input type="number" placeholder="手机号码" name="phone" value="{{phone}}"></input>
+        </view>
+        <view class='info-item'>
+          <view class='info-label'>地址</view>
+          <view class="address-box" bindtap='getLocaltion'>
+            <view class="address-detail">{{locationObj.address}}</view>
+            <icon class="iconfont icon-right"></icon>
+          </view>
+        </view>
+      </view>
+      <view class="btn-group">
+        <button class="cancel" hover-class="click-after1" bindtap="back">取消</button>
+        <button class="save" form-type="submit" hover-class="click-after">保存</button>
+      </view>
+    </form>
+  </view>
+</view>

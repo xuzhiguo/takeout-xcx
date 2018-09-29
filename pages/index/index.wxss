@@ -1,0 +1,163 @@
+/**index.wxss**/
+.click-after {
+  background-color: #f8b249 !important;
+}
+
+.head-banners {
+  position: relative;
+  width: 100%;
+  padding: 30rpx;
+  padding-left: 80rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  /* background-size: cover;
+  background-position: center;
+  background-image: url(https://thumbnail0.baidupcs.com/thumbnail/9059e19abfb7d07e17d4a87e2c9e7334?fid=3990140806-250528-1084936375895363&time=1530496800&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-A1uUEZwgj8xr9VPjZBjOSW%2F%2FgkM%3D&expires=8h&chkv=0&chkbd=0&chkpc=&dp-logid=4231435569988774571&dp-callid=0&size=c710_u400&quality=100&vuk=-&ft=video);  */
+}
+
+.left-path,
+.left-path {
+  float: left;
+}
+
+.logo {
+  width: 160rpx;
+  border-radius: 50%;
+  margin-right: 50rpx;
+}
+
+.star {
+  color: #fd9800;
+}
+
+.order,
+.pay {
+  position: absolute;
+  right: 100rpx;
+  top: 30rpx;
+  font-size: 25rpx;
+  border: solid #666 1px;
+  color: #666;
+  padding: 5rpx 20rpx;
+  border-radius: 50rpx;
+
+}
+
+.order {
+  top: 130rpx;
+}
+
+.btn-menu {
+  width: 100%;
+  background: #fff;
+  padding: 50rpx 0 20rpx;
+  border-bottom: solid  20rpx #f5f5f5;
+}
+
+.submit-btn {
+  width: 80%;
+  font-size: 30rpx;
+  background-color: #fd9800;
+  color: #fff;
+  margin-bottom: 30rpx;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  margin: 15rpx 0;
+}
+
+.menu-item:first-of-type .iconfont {
+  color: #ffc233;
+}
+
+.menu-item:last-of-type .iconfont {
+  color: #2cadcc;
+}
+
+.tips {
+  display: inline;
+  font-size: 30rpx;
+  margin-left: 50rpx;
+  padding: 5rpx 10rpx;
+  border: solid 1px #fc8b6b;
+  border-radius: 10rpx;
+  color: #fc8b6b;
+}
+
+.menu-item .item-right .icon-right {
+  color: #666;
+}
+
+/* shop-info  */
+.shop-info {
+  width: 100%;
+  padding: 0 30rpx;
+  padding-right: 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-bottom: solid 20rpx #f5f5f5;  
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  padding-right: 30rpx;
+  border-bottom: solid #f5f5f5 1px;
+  font-size: 32rpx;
+}
+
+.info-left {
+  padding: 10rpx 0;
+}
+
+.info-right {
+  padding: 10rpx 0;
+}
+
+/* 商家照片 */
+.shop-photo {
+  background-color: #fff;
+  width: 100%;
+  border-bottom: solid #f5f5f5 20rpx;
+}
+
+.shop-photo .title {
+  padding-left: 30rpx;
+  line-height: 80rpx;
+}
+
+.scroll-view-x {
+  width: 100%;
+  overflow: scroll;
+  height: 200rpx; 
+  white-space: nowrap;
+}
+
+.image-list {
+  width: auto;
+  height: 200rpx; 
+}
+.img-item {
+  height: 160rpx;
+  width: 160rpx;
+  margin: 20rpx 15rpx;
+  display: inline-block;
+}
+
+/* 照片大图 */
+.big-image {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  background-color: #000;
+  height: 100%;
+  width: 100%;
+}
+
+.cover-image-item {
+  max-height: 700rpx;
+  width: auto;
+}
