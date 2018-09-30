@@ -120,6 +120,10 @@
   color: #fff;
 }
 
+.submit-btn.disabled {
+  background: #999;
+}
+
 .price-list {
   padding: 30rpx 30rpx 10rpx;
   border-bottom: solid #ececec 1px;

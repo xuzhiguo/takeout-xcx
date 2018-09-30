@@ -23,7 +23,7 @@
   <view class='btn-menu'>
     <button class='submit-btn' hover-class="click-after" bindtap='goOrderMenu'>
       <icon class='iconfont icon-meishi'></icon>
-      点餐
+      现场点餐
     </button>
 
     <view class='menu-item' bindtap='goTakeOut'>
@@ -42,6 +42,16 @@
         <icon class='iconfont icon-dianzan'></icon>
         自提
         <view class='tips'>更方便</view>
+      </view>
+      <view class='item-right'>
+        <icon class='iconfont icon-right'></icon>
+      </view>
+    </view>
+
+    <view class='menu-item' bindtap='goTakeOut'>
+      <view class='item-left'>
+        <icon class='iconfont icon-dingdan'></icon>
+        我的订单
       </view>
       <view class='item-right'>
         <icon class='iconfont icon-right'></icon>

@@ -1,14 +1,15 @@
-const sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
+const sliderWidth = 120; // 需要设置slider的宽度，用于计算中间位置
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    tabs: ["外卖", "评价", "订单"],
+    tabs: ["外卖", "评价"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
+    sliderWidth: 0,
     menuList: [
       {
         id: 0,
@@ -700,9 +701,58 @@ Page({
     let that = this;
     wx.getSystemInfo({
       success: function (res) {
+        console.log(res.windowWidth / that.data.tabs.length)
+
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex,
+          sliderWidth: sliderWidth
+        });
+      }
+    });
+  },
+
+  /**
+   * 用户方法 -- 创建订单
+   */
+  createBill(e) {
+    console.log(this.data.total);
+    if (this.data.total == 0) {
+      return;
+    }
+    
+    let bill = {
+      list: [],
+      total: this.data.total
+    };
+    console.log(this.data);
+    
+    // 遍历找出选择的菜
+    this.data.menuList.forEach((item) => {
+      if(item.count > 0) {
+        let obj = {
+          id: item.id,
+          text: item.text
+        };
+
+        let list = item.foodList.filter((i) => {
+          return i.count > 0;
+        });
+
+        obj.list = list;
+        bill.list.push(obj);
+      }
+    });
+
+    console.log(bill);
+
+    // 设置存储
+    wx.setStorage({
+      key: "bill",
+      data: bill,
+      success: function() {
+        wx.navigateTo({
+          url: '../confirmPay/confirmPay'
         });
       }
     });

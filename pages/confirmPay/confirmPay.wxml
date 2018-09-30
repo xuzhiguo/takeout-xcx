@@ -15,22 +15,22 @@
       </view>
     </view>
     <view class="order-box">
-      <view class="order-type-item" wx:for="{{1}}" wx:key="{{index}}">
+      <view class="order-type-item" wx:for="{{billList}}" wx:key="{{index}}">
         <view class='oreder-type-title'>
           <icon class="iconfont icon-dingdan"></icon>
-          烧腊套餐
+          {{item.text}}
         </view>
-        <view class="food-list" wx:for="{{2}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{idx}}">
+        <view class="food-list" wx:for="{{item.list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{idx}}">
           <view class="food-image">
             <image src='../../image/shop3.jpg'></image>
           </view>
           <view class="food-info">
             <view class="info-left">
-              红烧排骨饭
+              {{itemName.text}}
             </view>
             <view class="info-right">
-              <view class="price">￥18</view>
-              <view class="count">× 1</view>
+              <view class="price">￥{{itemName.price}}</view>
+              <view class="count">× {{itemName.count}}</view>
             </view>
           </view>
         </view>
@@ -47,12 +47,12 @@
       </view>
       <view class="price-box">
         总计：
-        <view class="price-total">￥68</view>
+        <view class="price-total">￥{{totalPrice}}</view>
       </view>
     </view>
     <view class="bottom-bar">
-      <view class="total">￥68</view>
-      <view class="submit-btn">提交订单</view>
+      <view class="total">￥{{totalPrice}}</view>
+      <view class="submit-btn {{canTake?'':'disabled'}}">提交订单</view>
     </view>
   </view>
 </view>
