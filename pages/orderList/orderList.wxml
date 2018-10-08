@@ -19,7 +19,20 @@
                 </view>
                 <!-- 待付款 -->
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-                 ttttt
+                  
+                  <scroll-view scroll-y class="list" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+                    <view class="list-item">
+                      <view class="item-date">
+                        <view>2018-09-28 08:41</view>
+                        <view>待付款</view>
+                      </view>
+                     <view class="item-info">
+                      <view class="item-img">
+                        <image src="../../image/shop1.jpg"></image>
+                      </view>
+                     </view> 
+                    </view>
+                  </scroll-view>
                 </view>
                  <!-- 待评价 -->
                 <view class="weui-tab__content" hidden="{{activeIndex != 2}}">

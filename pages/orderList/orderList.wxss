@@ -1,1 +1,39 @@
 /* pages/orderList/orderList.wxss */
+
+.a {
+  height: calc(100% - 200rpx);
+}
+
+.weui-tab__content {
+  height: 100%;
+  padding: 0;
+}
+
+.list {
+  height: 100%;
+  background-color: #eee;
+}
+
+.list-item {
+  margin-top: 18rpx;
+  background: #fff;
+}
+
+.item-date {
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+  font-size: 24rpx;
+  color: #999;
+  border-bottom: solid #ececec 1px;
+}
+
+.item-date view {
+  flex: 1;
+}
+
+.item-date view:last-of-type {
+  color: #fd9800;
+  font-size: 32rpx;
+  text-align: right;
+}

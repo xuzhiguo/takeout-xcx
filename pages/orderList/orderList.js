@@ -11,7 +11,9 @@ Page({
     activeIndex: 1,
     sliderOffset: 0,
     sliderLeft: 0,
-    sliderWidth: 0
+    sliderWidth: 0,
+    hideHeader: true,
+    refreshTime: ''
   },
 
   tabClick(e) {
@@ -25,8 +27,6 @@ Page({
     let that = this;
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res.windowWidth / that.data.tabs.length)
-
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex,
@@ -36,10 +36,19 @@ Page({
     });
   },
 
+  refresh(e) {
+    let date = new Date();
+    this.setData({
+      refreshTime: date.toLocaleTimeString(),
+      hideHeader: false
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(this);
     this.setSlider();
   },
 

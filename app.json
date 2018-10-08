@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/orderList/orderList",
+    "pages/index/index",
     "pages/takeOut/takeOut",
     "pages/confirmPay/confirmPay",
     "pages/payBill/payBill",
