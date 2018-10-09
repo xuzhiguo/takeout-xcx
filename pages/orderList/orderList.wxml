@@ -21,14 +21,21 @@
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
                   
                   <scroll-view scroll-y class="list" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-                    <view class="list-item">
+                    <view class="list-item" wx:for="{{2}}" >
                       <view class="item-date">
                         <view>2018-09-28 08:41</view>
                         <view>待付款</view>
                       </view>
-                     <view class="item-info">
+                     <view class="flex item-info" wx:for="{{3}}">
                       <view class="item-img">
                         <image src="../../image/shop1.jpg"></image>
+                      </view>
+                      <view class="flex item-text">
+                        <view class="text-left">
+                          <view>烧鸭饭</view>
+                          <view class="text-price">￥ 15</view>
+                        </view>
+                        <view class="text-right flex">x 2</view>
                       </view>
                      </view> 
                     </view>

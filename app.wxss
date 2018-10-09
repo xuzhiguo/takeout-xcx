@@ -32,6 +32,10 @@
   background-color: #fd9800;
 }
 
+.flex {
+  display: flex;
+}
+
 page,
 .page,
 .page__bd{

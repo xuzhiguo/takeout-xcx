@@ -37,3 +37,40 @@
   font-size: 32rpx;
   text-align: right;
 }
+
+.item-info {
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.item-img {
+  flex-shrink: 0;
+  border-bottom: solid #ececec 1px;
+}
+
+.item-img image{
+  display: block;
+  padding: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.item-text {
+  width: 100%;
+  border-bottom: solid #ececec 1px;
+}
+
+.text-left {
+  width: 100%;
+}
+
+.text-right {
+  width: 100rpx;
+  font-size: 30rpx;
+  align-items: center;
+}
+
+.text-price {
+  color: #666;
+  font-size: 26rpx;
+}
