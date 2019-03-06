@@ -1,4 +1,6 @@
 const util = require('../../utils/util.js');
+const app = getApp();
+let submitFlag = 0;
 
 Page({
   /**
@@ -11,7 +13,7 @@ Page({
     transCost: 0,
     goodsCost: 0,
     totalPrice: 0,
-    canTake: true
+    canTake: false
   },
   /**
    * 跳转到选择地址页面
@@ -25,21 +27,16 @@ Page({
    * 获取地址
    */
   getAddress() {
-    let vm = this;
+    let userInfo = app.globalData.userInfo;
+    console.log(userInfo);
+    if(userInfo.latitude && userInfo.longitude) {
+      this.setData({
+        addressObj: userInfo,
+        showAddress: true
+      });
 
-    // 获取地址
-    wx.getStorage({
-      key: 'userAddress',
-      success: function (res) {
-        console.log(res.data);
-        vm.setData({
-          addressObj: res.data,
-          showAddress: true
-        });
-
-        vm.getDistance(res.data);
-      }
-    });
+      this.getDistance(userInfo);
+    } 
   },
 
   /**
@@ -67,7 +64,9 @@ Page({
    * 获取距离
    */
   getDistance({latitude, longitude}) {
-    let distance = parseInt(util.getDistance(latitude, longitude, 23.13844, 113.31538));
+    let shopInfo = app.globalData.shopInfo;
+    console.log(latitude, longitude, shopInfo.latitude, shopInfo.longitude);
+    let distance = parseInt(util.getDistance(latitude, longitude, shopInfo.latitude, shopInfo.longitude));
       let cost;
       let canTake = true;
       switch (true) {
@@ -84,14 +83,12 @@ Page({
         default:
           cost = 0;
       }
-      console.log(canTake);
+      console.log(canTake, distance);
 
       this.setData({
         transCost: cost,
         canTake: canTake
       });
-
-      console.log(distance);
   },
 
   /**
@@ -99,8 +96,8 @@ Page({
    */
   setTotalPrice() {
     let data = this.data;
-    // 总价 = 配送费 + 餐费 + 餐盒费(固定 1元)
-    let total = data.transCost + data.goodsCost + 1;
+    // 总价 = 配送费 + 餐费
+    let total = data.transCost + data.goodsCost;
 
     this.setData({
       totalPrice: total
@@ -108,11 +105,77 @@ Page({
   },
 
   /**
+   * 提交订单
+   */
+  submit() {
+    if (submitFlag == 0) {
+      submitFlag = 1;
+      let billList = this.data.billList;
+      let userInfo = app.globalData.userInfo;
+      let data = {};
+      data.orderId = (new Date()).getTime();
+      data.userId = userInfo.id;
+      data.status = 0;
+      data.foodList = [];
+      data.total = this.data.totalPrice;
+      data.transCost = this.data.transCost;
+      data.address = this.data.addressObj.address;
+      data.customerName = this.data.addressObj.name;
+      data.phone = this.data.addressObj.phone;
+      data.type = 0;  // 0为外卖，1为堂食
+      console.log(billList);
+
+      for (let i = 0; i < billList.length; i++) {
+        for (let j = 0; j < billList[i].list.length; j++) {
+          let obj = {
+            parentId: billList[i].id,
+            parentName: billList[i].name,
+            id: billList[i].list[j].id,
+            name: billList[i].list[j].name,
+            price: billList[i].list[j].price,
+            count: billList[i].list[j].count
+          }
+          data.foodList.push(obj);
+        }
+      }
+
+      wx.request({
+        url: app.globalData.serverTarget + '/SetOrder',
+        method: 'post',
+        data: 'data=' + JSON.stringify(data),
+        header: {
+          'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },
+        success(res) {
+          console.log(res);
+          submitFlag = 0;
+          if (res.data != '' && res.statusCode == 200) {
+            wx.navigateTo({
+              url: '../payBill/payBill?id=' + res.data + "&total=" + data.total,
+            });
+          }
+        },
+        fail(res) {
+          submitFlag = 0;
+          wx.showToast({
+            title: '服务器有点忙，请稍后重试 ~',
+            icon: 'none'
+          });
+        }
+      });
+    }
+  },
+
+  init() {
+    this.getAddress();
+    this.getBill();
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getAddress();
-    this.getBill();
+    this.init();
   },
 
   /**

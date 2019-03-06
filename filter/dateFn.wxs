@@ -10,14 +10,23 @@ var dateFn = {
         var y = dateStr.slice(0,4);
         var m = dateStr.slice(4,6);
         var d = dateStr.slice(6,8);
-
+        
         return y + '-' + m + '-' + d;
       break;
+      case 19:
+        var d = dateStr.slice(0, 10);
+        var t = dateStr.slice(11);
+        return d+' '+t;
+        break;
       default:
         console.error('dateFn.dateFormat 参数格式错误');
         return '';
     }
-  }
+  },
+  timeFormat: function(timeStr) {
+    console.log(timeStr);
+    return timeStr.slice(0,5);
+  } 
 }
 
 module.exports = {

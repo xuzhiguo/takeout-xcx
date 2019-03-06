@@ -1,5 +1,6 @@
 // pages/orderList/orderList.js
 const sliderWidth = 80; // 需要设置slider的宽度，用于计算中间位置
+const app = getApp();
 
 Page({
 
@@ -8,12 +9,13 @@ Page({
    */
   data: {
     tabs: ["全部", "待付款", "待评价"],
-    activeIndex: 1,
+    activeIndex: 0, 
     sliderOffset: 0,
     sliderLeft: 0,
     sliderWidth: 0,
     hideHeader: true,
-    refreshTime: ''
+    refreshTime: '',
+    orderList: []
   },
 
   tabClick(e) {
@@ -36,6 +38,48 @@ Page({
     });
   },
 
+  getOrderList() {
+    let _this = this;
+    wx.showLoading({
+      title: '加载中',
+    });
+
+    wx.request({
+      url: app.globalData.serverTarget + '/GetOrderList',
+      method: 'post',
+      // data: 'userId=' + app.globalData.userInfo.id,
+      data: 'userId=oSsnw0Dx9I7I1dMbpG-tpbjii4Zc',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      },
+      success(res) {
+        wx.hideLoading();
+        console.log(res);
+        if(res.data) {
+          res.data = res.data.map((item)=>{
+            item.detail = item.detail!=''?JSON.parse(item.detail):[];
+            return item;
+          });
+          _this.setData({
+            orderList: res.data
+          });
+        }
+      },
+      fail(res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '服务器有点忙，请退出后重试 ~',
+          icon: 'none'
+        });
+      }
+    })
+  },
+
+  init() {
+    this.getOrderList();
+    this.setSlider();
+  },
+
   refresh(e) {
     let date = new Date();
     this.setData({
@@ -44,12 +88,21 @@ Page({
     })
   },
 
+  goDetail(e) {
+    let index = e.currentTarget.dataset.index;
+    let data = this.data.orderList[index];
+
+    console.log(data);
+    wx.navigateTo({
+      url: '../orderDetail/orderDetail?data=' + JSON.stringify(data)
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this);
-    this.setSlider();
+    this.init();
   },
 
   /**
@@ -77,7 +130,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    wx.reLaunch({
+      url: '../index/index'
+    })
   },
 
   /**
@@ -85,6 +140,10 @@ Page({
    */
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading();
+
+    setTimeout(function() {
+      wx.hideNavigationBarLoading();
+    },1000);
   },
 
   /**

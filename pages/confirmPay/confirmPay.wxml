@@ -18,7 +18,7 @@
       <view class="order-type-item" wx:for="{{billList}}" wx:key="{{index}}">
         <view class='oreder-type-title'>
           <icon class="iconfont icon-dingdan"></icon>
-          {{item.text}}
+          {{item.name}}
         </view>
         <view class="food-list" wx:for="{{item.list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{idx}}">
           <view class="food-image">
@@ -26,7 +26,7 @@
           </view>
           <view class="food-info">
             <view class="info-left">
-              {{itemName.text}}
+              {{itemName.name}}
             </view>
             <view class="info-right">
               <view class="price">￥{{itemName.price}}</view>
@@ -36,10 +36,6 @@
         </view>
       </view>
       <view class="price-list">
-        <view class="price-item">
-          <view class="price-title">餐盒费</view>
-          <view class="price-detail">￥1</view>
-        </view>
         <view class="price-item">
           <view class="price-title">配送费</view>
           <view class="price-detail">￥{{transCost}}</view>
@@ -52,7 +48,7 @@
     </view>
     <view class="bottom-bar">
       <view class="total">￥{{totalPrice}}</view>
-      <view class="submit-btn {{canTake?'':'disabled'}}">提交订单</view>
+      <view class="submit-btn {{canTake?'':'disabled'}}" bindtap='submit'>提交订单</view>
     </view>
   </view>
 </view>

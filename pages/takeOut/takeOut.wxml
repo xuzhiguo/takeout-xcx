@@ -22,8 +22,8 @@
                           <scroll-view scroll-y class='menu-list'>
                             <view class="menu-item {{menuIndex===index?'active':''}}" 
                               wx:for="{{menuList}}" wx:key="{{index}}" bindtap='changeMenu' data-index="{{index}}" >
-                              <view class="weui-badge menu-badge" hidden="{{item.count==0}}">{{item.count}}</view>
-                              {{item.text}}
+                              <view class="weui-badge menu-badge" hidden="{{item.count==0 || !item.count}}">{{item.count || 0}}</view>
+                              {{item.name}}
                             </view>
                           </scroll-view>
                         </view>
@@ -31,7 +31,7 @@
                         <scroll-view scroll-y class="weui-flex__item menu-contant" scroll-into-view="{{toView}}">
                           <view class='contant-title' id="contantTitle">
                             <view class='iconfont icon-dingdan'></view> 
-                            {{menuList[menuIndex].text}}
+                            {{menuList[menuIndex].name}}
                           </view>
                           <view class='contant-list'>
                             <view class='contant-item' wx:for="{{menuList[menuIndex].foodList}}" wx:key="{{index}}">
@@ -39,7 +39,7 @@
                                  <image class="item-logo" src='../../image/shop1.jpg'></image> 
                               </view>
                               <view class='right-item'>
-                                <view class='item-title'>{{item.text}}</view>
+                                <view class='item-title'>{{item.name}}</view>
                                 <view class='item-price'>￥{{item.price}}</view>
                                 <view class='count-ctrl'>
                                   <view class="count-icon iconfont icon-del {{item.count>0?'':'disabled'}}" 
@@ -72,22 +72,22 @@
                   <scroll-view scroll-y class='scroll-box' >
                     <view class='total-score'>
                       <view class='score-box'>
-                       <view>{{Compute.average(evaluate.totalPoints, evaluate.totalNum)}}</view>分 
+                       <view>{{evaluate.averageScore?evaluate.averageScore:0}}</view> 分 
                       </view>
-                      <view class='total-tips'>共有{{evaluate.totalNum}}条评价</view>
+                      <view class='total-tips'>{{evaluate.count?'共有 ' +evaluate.count+' 条评价':'暂无评价'}}</view>
                     </view>
                     <view class='evaluate-box'>
                       <view class='evaluate-item' wx:for="{{evaluate.list}}" wx:key="index">
-                        <view class='user-name'>{{item.username}}</view>
+                        <view class='user-name'>{{item.customerName}}</view>
                         <view class='pd-left start-box'>
                           <icon class="iconfont icon-five-star user-start {{idx>item.score-1?'gray':''}}"
                             wx:for="{{5}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{idx}}">
                           </icon>
                         </view>
                         <view class='evaluate pd-left'>
-                          {{item.text}}
+                          {{item.details}}
                         </view>
-                        <view class='time'>{{DateFn.dateFormat(item.time)}}</view>
+                        <view class='time'>{{DateFn.dateFormat(item.date)}}</view>
                       </view>
                     </view>
                   </scroll-view>

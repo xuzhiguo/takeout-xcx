@@ -116,6 +116,7 @@
 
 .info-left {
   padding: 10rpx 0;
+  white-space: nowrap;
 }
 
 .info-right {

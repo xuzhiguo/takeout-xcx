@@ -1,0 +1,69 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<view class="page">
+  <view class='page_bd'>
+    <view class="user-info">
+      <view class="user-left">
+        <icon class="iconfont icon-local"></icon>
+      </view>
+      <view class='user-right'>
+        <view class="user-info-item">联系人：{{orderDetail.customerName}}</view>
+        <view class="user-info-item">电话：{{orderDetail.phone}}</view>
+        <view class="user-info-item">收货地址：{{orderDetail.address}}</view>
+      </view>
+    </view>
+
+    <view class='food-info'>
+      <view class='food-detail' wx:for="{{orderDetail.detail}}" wx:key="{{index}}">
+        <view class="food-image">
+          <image src='../../image/shop3.jpg'></image>
+        </view>
+        <view class='food-item-info'>
+          <view class="info-left">
+            {{item.foodName}}
+          </view>
+          <view class="info-right">
+            <view class="price">￥{{item.price}}</view>
+            <view class="count">× {{item.count}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='food-info-total'>
+      <view class='calc-box'>
+        <view class='line'>
+          <view class='title'>订单金额</view>
+          <view class='value'>￥ {{orderDetail.total - orderDetail.transCost}}</view>
+        </view>
+        <view class='line'>
+          <view class='title'>送餐费</view>
+          <view class='value'>￥ {{orderDetail.transCost}}</view>
+        </view>
+      </view>
+      <view class='result'>
+        <view class='title'>实付金额</view>
+        <view class='value'>￥ {{orderDetail.total}}</view>
+      </view>
+    </view>
+
+    <view class='order-info'>
+      <view class='line'>
+        <view class='title'>下单日期</view>
+        <view class='value'>{{orderDetail.createTime}}</view>
+      </view>
+      <view class='line'>
+        <view class='title'>订单类型</view>
+        <view class='value'>{{orderDetail.type==0?'外卖':'堂食'}}</view>
+      </view>
+      <view class='line'>
+        <view class='title'>订单状态</view>
+        <view class='value'>{{orderDetail.status==0?'待付款':orderDetail.status==1?'待评价':'已完成'}}</view>
+      </view>
+      <view class='button-group'>
+        <button hover-class='active' bindtap='goPay' hidden='{{!(orderDetail.status==0)}}'>付款</button>
+        <button hover-class='active' bindtap='goEvaluate' hidden='{{!(orderDetail.status==1)}}'>评价</button>
+      </view>
+    </view>
+  </view>
+</view>
+

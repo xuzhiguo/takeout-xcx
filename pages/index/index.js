@@ -4,61 +4,66 @@ const app = getApp()
 
 Page({
   data: {
-    shopInfo: [
-      {
-        title: '南宁店',
-        icon: 'icon-home',
-        text: ''
-      },
-      {
-        title: '广东省广州市越秀区广州大道北193号',
-        icon: 'icon-local',
-        text: ''
-      },
-      {
-        title: '电话：',
-        icon: 'icon-phone',
-        text: '18947892435'
-      },
-      {
-        title: '营业时间：',
-        icon: 'icon-clock',
-        text: '店内 9:00-21:00； 外卖 9:00-20:00'
-      },
-    ],
-    shopLocation: {
-      address: '广东省广州市越秀区广州大道北193号',
-      latitude: 23.14031,
-      longitude: 113.31428
-    },
-    shopPhotoList: ['../../image/shop1.jpg', '../../image/shop2.jpg', '../../image/shop3.jpg', '../../image/shop1.jpg', '../../image/shop2.jpg'],
+    shopInfo: {},
     bigImageSrc: '',
     isShowBig: false
   },
   //事件处理函数
   onLoad: function() {
-    wx.setStorage({
-      key: "shopLocation",
-      data: this.data.shopLocation
-    });
+    this.init();
   },
-  showBigImg: function(event) {
+  init() {
+    // wx.getUserInfo({
+    //   success(res) {
+    //     console.log(res);
+    //   }
+    // })
+    this.getShopInfo();
+  },
+  getShopInfo() {
+    let _this = this;
+    wx.request({
+      url: app.globalData.serverTarget + '/GetShopInfo',
+      method: 'post',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      },
+      success(res) {
+        console.log(res);
+        if (res.data) {
+          res.data.image = JSON.parse(res.data.image);
+          console.log(res.data.dOpen.substring(0, 5))
+          _this.setData({
+            shopInfo: res.data
+          });
+          app.globalData.shopInfo = res.data;
+        }
+      },
+      fail(res) {
+        wx.showToast({
+          title: '服务器有点忙，请退出后重试 ~',
+          icon: 'none'
+        });
+      }
+    })
+  },
+  showBigImg(event) {
     console.log(event);
     var data = this.data;
     console.log(data);
     var index = event.currentTarget.dataset.index;
     this.setData({
-      bigImageSrc: data.shopPhotoList[index],
+      bigImageSrc: data.shopInfo.image[index],
       isShowBig: true
     });
   },
-  shopConditionImg: function() {
+  shopConditionImg() {
     this.setData({
-      bigImageSrc: '../../image/shop.jpg',
+      bigImageSrc: this.data.shopInfo.license,
       isShowBig: true
     });
   },
-  hideBigImg: function() {
+  hideBigImg() {
     this.setData({
       isShowBig: false
     });
@@ -73,6 +78,11 @@ Page({
     // wx.navigateTo({
     //   url: '../orderMenu/orderMenu'
     // });
+  },
+  goOrderList() {
+    wx.navigateTo({
+      url: '../orderList/orderList',
+    })
   },
   goTakeOut() {
     wx.navigateTo({

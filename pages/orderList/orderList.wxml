@@ -15,35 +15,84 @@
             <view class="weui-tab__panel">
                 <!-- 全部 -->
                 <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-                  afsg
-                </view>
-                <!-- 待付款 -->
-                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-                  
-                  <scroll-view scroll-y class="list" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-                    <view class="list-item" wx:for="{{2}}" >
+                   <scroll-view scroll-y class="list" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+                    <view class="list-item" wx:for="{{orderList}}" wx:key="{{index}}" bindtap='goDetail' data-index="{{index}}" >
                       <view class="item-date">
-                        <view>2018-09-28 08:41</view>
-                        <view>待付款</view>
+                        <view>{{item.createTime}}</view>
+                        <view>{{item.status==0?'待付款':item.status==1?'待评价':'已完成'}}</view>
                       </view>
-                     <view class="flex item-info" wx:for="{{3}}">
+                     <view class="flex item-info" wx:for="{{item.detail}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{idx}}" >
                       <view class="item-img">
                         <image src="../../image/shop1.jpg"></image>
                       </view>
                       <view class="flex item-text">
                         <view class="text-left">
-                          <view>烧鸭饭</view>
-                          <view class="text-price">￥ 15</view>
+                          <view>{{itemName.foodName}}</view>
+                          <view class="text-price">￥ {{itemName.price}}</view>
                         </view>
-                        <view class="text-right flex">x 2</view>
+                        <view class="text-right flex">x {{itemName.count}}</view>
                       </view>
-                     </view> 
+                     </view>
+                     <view class='total-info'>
+                      共 {{item.count}} 件商品 总金额：
+                      <view class='price'> ￥{{item.total}}</view>
+                     </view>
+                    </view>
+                  </scroll-view>
+                </view>
+                <!-- 待付款 -->
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                  <scroll-view scroll-y class="list" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+                    <view class="list-item" wx:for="{{orderList}}" wx:key="{{index}}"  hidden="{{item.status != 0}}" bindtap='goDetail' data-index="{{index}}" >
+                      <view class="item-date">
+                        <view>{{item.createTime}}</view>
+                        <view>待付款</view>
+                      </view>
+                     <view class="flex item-info" wx:for="{{item.detail}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{idx}}" >
+                      <view class="item-img">
+                        <image src="../../image/shop1.jpg"></image>
+                      </view>
+                      <view class="flex item-text">
+                        <view class="text-left">
+                          <view>{{itemName.foodName}}</view>
+                          <view class="text-price">￥ {{itemName.price}}</view>
+                        </view>
+                        <view class="text-right flex">x {{itemName.count}}</view>
+                      </view>
+                     </view>
+                     <view class='total-info'>
+                      共 {{item.count}} 件商品 总金额：
+                      <view class='price'> ￥{{item.total}}</view>
+                     </view>
                     </view>
                   </scroll-view>
                 </view>
                  <!-- 待评价 -->
                 <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-                 ccc
+                   <scroll-view scroll-y class="list" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+                    <view class="list-item" wx:for="{{orderList}}" wx:key="{{index}}" hidden="{{item.status != 1}}" bindtap='goDetail' data-index="{{index}}" >
+                      <view class="item-date">
+                        <view>{{item.createTime}}</view>
+                        <view>待评价</view>
+                      </view>
+                     <view class="flex item-info" wx:for="{{item.detail}}" wx:for-index="idx" wx:for-item="itemName" wx:key="{{idx}}" >
+                      <view class="item-img">
+                        <image src="../../image/shop1.jpg"></image>
+                      </view>
+                      <view class="flex item-text">
+                        <view class="text-left">
+                          <view>{{itemName.foodName}}</view>
+                          <view class="text-price">￥ {{itemName.price}}</view>
+                        </view>
+                        <view class="text-right flex">x {{itemName.count}}</view>
+                      </view>
+                     </view>
+                     <view class='total-info'>
+                      共 {{item.count}} 件商品 总金额：
+                      <view class='price'> ￥{{item.total}}</view>
+                     </view>
+                    </view>
+                  </scroll-view>
                 </view>
             </view>
         </view>

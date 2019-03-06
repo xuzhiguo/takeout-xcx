@@ -1,11 +1,11 @@
 .page__bd {
   background-color: #f5f5f5;
   padding: 30rpx;
+  box-sizing: border-box;
 }
 
 .main {
     background-color: #fff;
-    padding: 28rpx;
 }
 
 .logo-box {

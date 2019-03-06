@@ -1,10 +1,12 @@
 {
   "pages": [
-    "pages/orderList/orderList",
     "pages/index/index",
-    "pages/takeOut/takeOut",
-    "pages/confirmPay/confirmPay",
+    "pages/evaluate/evaluate",
+    "pages/orderList/orderList",
+    "pages/orderDetail/orderDetail",
     "pages/payBill/payBill",
+    "pages/confirmPay/confirmPay",
+    "pages/takeOut/takeOut",
     "pages/chooseAddress/chooseAddress",
     "pages/orderMenu/orderMenu",
     "pages/msg/success",

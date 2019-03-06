@@ -1,0 +1,22 @@
+<view class='page'>
+  <view class='page_bd'>
+    <view class='evaluate-info'>
+      <view class='header'>
+        <view class='good-image'>
+          <image src='../../image/shop3.jpg'></image>
+        </view>
+        <view class='star-info'>
+          商品评分
+          <view class='star' bindtap='verify'>
+            <icon class="iconfont icon-five-star {{index<score?'active':''}}" wx:for="{{5}}" wx:key="{{index}}"  bindtap='setScore' data-index="{{index}}" ></icon>
+          </view>
+        </view>
+      </view>
+
+      <view class='evaluate-edit'>
+        <textarea placeholder="写写你的感受分享给网友吧~" value='{{evaluate}}' bindinput='verify'></textarea>
+        <button class='submit-btn' hover-class='active' bindtap='submit' disabled='{{!canSubmit}}'>提交</button>
+      </view>
+    </view>
+  </view>
+</view>

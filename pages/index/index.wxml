@@ -1,12 +1,13 @@
+
 <!--index.wxml-->
 <view class="container">
    <!-- 头部logo -->
   <view class='head-banners'>
     <view class='left-path'>
-      <image class="logo" mode="widthFix" src='../../image/logo.png'></image>
+      <image class="logo" mode="widthFix" src='{{shopInfo.logo}}'></image>
     </view>
     <view class='right-path'>
-      <view class='title'>多点点（南宁店）</view>
+      <view class='title'>{{shopInfo.name}}</view>
       <view>
         <icon class='iconfont icon-five-star star'></icon>
         <icon class='iconfont icon-five-star star'></icon>
@@ -48,7 +49,7 @@
       </view>
     </view>
 
-    <view class='menu-item' bindtap='goTakeOut'>
+    <view class='menu-item' bindtap='goOrderList'>
       <view class='item-left'>
         <icon class='iconfont icon-dingdan'></icon>
         我的订单
@@ -60,13 +61,36 @@
   </view>
   <!-- 商家信息 -->
   <view class='shop-info'>
-    <view class='info-item' wx:for="{{shopInfo}}" wx:key="{{index}}">
+    <view class='info-item'>
       <view class='info-left'>
-        <icon class='iconfont {{item.icon}}'></icon>
-        {{item.title}}
+        <icon class='iconfont icon-home'></icon>
+        {{shopInfo.city}}店
+      </view>
+      <view class='info-right'></view>
+    </view>
+    <view class='info-item'>
+      <view class='info-left'>
+        <icon class='iconfont icon-local'></icon>
+        {{shopInfo.address}}
+      </view>
+      <view class='info-right'></view>
+    </view>
+    <view class='info-item'>
+      <view class='info-left'>
+        <icon class='iconfont icon-phone'></icon>
+        电话：
       </view>
       <view class='info-right'>
-        {{item.text}}
+        {{shopInfo.phone}}
+      </view>
+    </view>
+    <view class='info-item'>
+      <view class='info-left'>
+        <icon class='iconfont icon-clock'></icon>
+        营业时间：
+      </view>
+      <view class='info-right'>
+        店内 9:00-22:00;外卖 10:00-20:00
       </view>
     </view>
   </view>
@@ -75,7 +99,7 @@
   <view class='shop-photo'>
     <view class='title'>商家照片</view>
     <scroll-view class='scroll-view-x' scroll-x>
-        <image class='img-item' src='{{item}}' wx:for="{{shopPhotoList}}" data-index='{{index}}' bindtap='showBigImg' wx:key="{{index}}" ></image>
+        <image class='img-item' src='{{item}}' wx:for="{{shopInfo.image}}" data-index='{{index}}' bindtap='showBigImg' wx:key="{{index}}" ></image>
     </scroll-view>
   </view>
 
@@ -83,7 +107,7 @@
   <view class='shop-photo'>
     <view class='title'>商家资质</view>
     <scroll-view class='scroll-view-x' scroll-x>
-        <image class='img-item' src='../../image/shop.jpg' bindtap='shopConditionImg'></image>
+        <image class='img-item' src='{{shopInfo.license}}' bindtap='shopConditionImg'></image>
     </scroll-view>
   </view>
   

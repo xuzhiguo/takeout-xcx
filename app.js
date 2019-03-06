@@ -1,34 +1,55 @@
 //app.js
 App({
   onLaunch: function () {
+    let _this = this;
+
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
+        console.log(res);
+        if(res.code) {
+          wx.request({
+            url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx43ad467f6347c463&secret=5751941cd529102a06c6fff977841c0c&js_code=' + res.code+'&grant_type=authorization_code',
+            success(res) {
+              console.log(res);
+              wx.request({
+                url: _this.globalData.serverTarget + '/GetUser',
+                method: 'post',
+                data: 'openId=' + res.data.openid,
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+                },
+                success(res1) {
+                  console.log(res1);
+                  if (res1.data == '200') {
+                    _this.globalData.userInfo.id = res.data.openid;
+                  } else {
+                    _this.globalData.userInfo = res1.data[0];
+                  }
+                }
+              })
             }
-          })
+          });
         }
+      }
+    });
+  },
+  updateUserInfo(data) {
+    let _this = this;
+    _this.globalData.userInfo = Object.assign(_this.globalData.userInfo, data);
+    wx.request({
+      url: _this.globalData.serverTarget + '/SetUser',
+      method: 'post',
+      data: 'json=' + JSON.stringify(_this.globalData.userInfo),
+      header: {
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
       }
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: {},
+    serverTarget: 'http://192.168.43.131:8099/api.asmx',
+    shopInfo: {}
   }
 })

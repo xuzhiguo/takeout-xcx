@@ -1,3 +1,5 @@
+const app = getApp();
+
 Page({
 
   /**
@@ -48,9 +50,9 @@ Page({
         longitude: this.data.locationObj.longitude
       };
 
-      console.log(userAddress);
-
-      wx.setStorageSync('userAddress', userAddress);
+      // 更新客户数据
+      app.updateUserInfo(userAddress);
+      
       wx.navigateTo({
         url: '../confirmPay/confirmPay'
       });

@@ -12,11 +12,13 @@
 .list {
   height: 100%;
   background-color: #eee;
+  padding-top: 18rpx;
+  box-sizing: border-box;
 }
 
 .list-item {
-  margin-top: 18rpx;
   background: #fff;
+  margin-bottom: 18rpx;
 }
 
 .item-date {
@@ -73,4 +75,19 @@
 .text-price {
   color: #666;
   font-size: 26rpx;
+}
+
+.total-info {
+  display: flex;
+  font-size: .75rem;
+  color: #888;
+  justify-content: flex-end;
+  padding-right: 1rem;
+  line-height: 1.8rem;
+}
+
+.total-info .price {
+  font-size: .85rem;
+  font-weight: 700;
+  color: #666;
 }

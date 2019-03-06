@@ -1,105 +1,101 @@
 const app = getApp();
+let submitFlag = 0;
 
+// pages/evaluate/evaluate.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    payType: [
-      {
-        icon: 'icon-weixin',
-        text: '微信支付'
-      }, {
-        icon: 'icon-yue',
-        text: '余额支付'
-      }
-    ],
-    payIndex: 0,
-    canPay: true,
-    orderId: '',
-    money: ''
+    score: 0,
+    canSubmit: false,
+    evaluate: '',
+    orderId: ''
   },
-  /**
-   * 用户方法--选择支付类型
-   */
-  changePay(e) {
+
+  setScore(e) {
     let index = e.currentTarget.dataset.index;
     this.setData({
-      payIndex: index
+      score: index+1
     });
   },
-  /**
-   * 用户方法--检测是否能支付
-   */
-  isCanPay(e) {
-    let val = e.detail.value;
-    let reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
 
-    let result = false;
-    if(reg.test(val)) {
-      result = true;
+  verify(e) {
+    let isPass = false;
+    let data = this.data;
+    !e.detail.x && this.setData({
+      evaluate: e.detail.value
+    });
+
+    if(e.detail.value) {
+      if (e.detail.value != '' && data.score > 0) {
+        isPass = true;
+      }
+    } else {
+      if (data.evaluate != '' && data.score > 0) {
+        isPass = true;
+      }
     }
-    
+
     this.setData({
-      canPay: result
+      canSubmit: isPass
     });
   },
 
-  /**
-   * 用户方法--支付
-   */
-  pay(e) {
-    wx.showLoading({
-      title: '支付中...'
-    });
+  submit() {
+    if(submitFlag == 0) {
+      submitFlag = 1;
+      let data = this.data;
+      let params = {
+        id: (new Date()).getTime(),
+        details: data.evaluate,
+        score: data.score,
+        customerId: app.globalData.userInfo.id,
+        orderId: data.orderId,
+        customerName: app.globalData.userInfo.name
+      }
 
-    let money = e.detail.value.money; 
-    console.log(money);
-    let orderId = this.data.orderId;
-    let data = {
-      orderId: orderId,
-      status: 1
-    }
-    if (orderId) {
       wx.request({
-        url: app.globalData.serverTarget + '/SetOrder',
+        url: app.globalData.serverTarget + '/SetEvaluate',
         method: 'post',
         header: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         },
-        data: 'data=' + JSON.stringify(data),
+        data: 'evaluateItem=' + JSON.stringify(params),
         success(res) {
+          submitFlag = 0;
           wx.hideLoading();
-          if(res.data == 200) {
+          if (res.data == 200) {
             wx.navigateTo({
-              url: '../msg/success',
-            })
+              url: '../orderList/orderList',
+            });
           } else {
             wx.showToast({
-              title: '服务器有点忙，请稍后重试 ~',
+              title: '服务器有点忙，请退出后重试 ~',
               icon: 'none'
             });
           }
         },
         fail() {
+          submitFlag = 0;
           wx.hideLoading();
           wx.showToast({
-            title: '服务器有点忙，请稍后重试 ~',
+            title: '服务器有点忙，请退出后重试 ~',
             icon: 'none'
           });
         }
       })
     }
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log(options);
     this.setData({
-      orderId: options.id,
-      money: options.total
+      orderId: options.id
     });
   },
 
@@ -107,48 +103,48 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   }
 })
